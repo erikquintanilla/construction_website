@@ -1,6 +1,20 @@
 (() => {
   const getAll = (selector) => Array.from(document.querySelectorAll(selector));
 
+  window.addEventListener('error', (event) => {
+    try {
+      console.error('Unhandled error', event?.error || event);
+    } catch {
+    }
+  });
+
+  window.addEventListener('unhandledrejection', (event) => {
+    try {
+      console.error('Unhandled promise rejection', event?.reason || event);
+    } catch {
+    }
+  });
+
   const throttle = (fn, waitMs) => {
     let lastCall = 0;
     let pending = null;
@@ -90,6 +104,20 @@
     reveals.forEach((el) => observer.observe(el));
   };
 
+  const validateHeroBackground = () => {
+    const heroBg = document.querySelector('.hero-bg');
+    if (!heroBg) return;
+
+    try {
+      const bgImage = window.getComputedStyle(heroBg).backgroundImage;
+      if (!bgImage || bgImage === 'none') {
+        console.warn('Hero background image is not set. Check CSS url() path.');
+      }
+    } catch (err) {
+      console.error('Hero background validation failed', err);
+    }
+  };
+
   const initPortfolioFilters = () => {
     const buttons = getAll('.filter-btn');
     if (buttons.length === 0) return;
@@ -142,8 +170,14 @@
   window.handleSubmit = handleSubmit;
 
   document.addEventListener('DOMContentLoaded', () => {
-    initScroll();
-    initScrollReveal();
-    initPortfolioFilters();
+    try {
+      initScroll();
+      initScrollReveal();
+      initPortfolioFilters();
+      validateHeroBackground();
+    } catch (err) {
+      console.error('Site initialization failed', err);
+      getAll('.reveal').forEach((el) => el.classList.add('visible'));
+    }
   });
 })();

@@ -922,7 +922,7 @@
 
   /* additional hero background and responsive tweaks */
   .hero-bg {
-    background-image: url('images/hero-bg.png');
+    background-image: url('../../images/hero-bg.png');
     background-size: cover;
     background-position: center;
     opacity: 0;
