@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Atlas Construction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self';">
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">Atlas<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="portfolio.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="testimonials.html">Reviews</a></li>
+    <li><a href="contact.html" class="nav-cta">Request an Estimate</a></li>
+  </ul>
+</nav>
+
+<section style="padding: 160px 80px 100px;">
+  <div class="section-label">Our Story</div>
+  <h1 class="section-title">30 Years.<br><em>Oakland Built.</em></h1>
+</section>
+
+<section style="padding: 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1400px; margin: 0 auto;">
+  <div>
+    <p style="font-size: 16px; color: #555; line-height: 1.8; margin-bottom: 20px;">
+      Founded in 1994, Atlas Construction has been a trusted partner for residential and commercial projects throughout Oakland, Berkeley, Piedmont, and Alameda. What began as a small family operation has grown into a respected construction company known for reliability, craftsmanship, and integrity.
+    </p>
+    <p style="font-size: 16px; color: #555; line-height: 1.8; margin-bottom: 20px;">
+      We've overseen 500+ projects, from kitchen remodels to full commercial buildouts. Our success comes from a simple philosophy: honest pricing, skilled tradespeople, and work that lasts decades.
+    </p>
+    <p style="font-size: 16px; color: #555; line-height: 1.8;">
+      Every member of our team is licensed, bonded, and trained in the latest building codes and sustainable practices. We take pride in leaving every job site clean and every client satisfied.
+    </p>
+  </div>
+  <div style="background: #eee; height: 400px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #999; border: 1px solid #ddd;">Team Photo</div>
+</section>
+
+<section style="background: #111; color: #fafaf8; padding: 100px 80px;">
+  <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 36px; text-align: center; margin-bottom: 60px;">By The Numbers</h2>
+  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; max-width: 1000px; margin: 0 auto; text-align: center;">
+    <div>
+      <div style="font-size: 48px; font-weight: bold; color: #d4aa55; margin-bottom: 8px;">30<span style="font-size: 32px;">+</span></div>
+      <div style="font-size: 14px; color: rgba(255,255,255,0.7);">Years in Business</div>
+    </div>
+    <div>
+      <div style="font-size: 48px; font-weight: bold; color: #d4aa55; margin-bottom: 8px;">500<span style="font-size: 32px;">+</span></div>
+      <div style="font-size: 14px; color: rgba(255,255,255,0.7);">Projects Completed</div>
+    </div>
+    <div>
+      <div style="font-size: 48px; font-weight: bold; color: #d4aa55; margin-bottom: 8px;">98<span style="font-size: 32px;">%</span></div>
+      <div style="font-size: 14px; color: rgba(255,255,255,0.7);">Client Satisfaction</div>
+    </div>
+    <div>
+      <div style="font-size: 48px; font-weight: bold; color: #d4aa55; margin-bottom: 8px;">4.9<span style="font-size: 32px;">★</span></div>
+      <div style="font-size: 14px; color: rgba(255,255,255,0.7);">Google Rating</div>
+    </div>
+  </div>
+</section>
+
+<section style="padding: 100px 80px; text-align: center;">
+  <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 42px; margin-bottom: 24px;">Ready to Work With Us?</h2>
+  <p style="font-size: 16px; color: #666; margin-bottom: 32px;">Contact us for a consultation.</p>
+  <a href="contact.html" class="btn-primary" style="display: inline-block; padding: 16px 40px; background: #b8933a; color: #000; text-decoration: none; font-weight: bold; border: 2px solid #b8933a;">Request an Estimate</a>
+</section>
+
+<footer>
+  <div class="footer-logo">Atlas<span>.</span> Construction</div>
+  <ul class="footer-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="portfolio.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="testimonials.html">Reviews</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="legal/privacy.html">Privacy Policy</a></li>
+    <li><a href="legal/license.html">License</a></li>
+  </ul>
+  <div class="footer-legal">© 2025 Atlas Construction. All rights reserved. Oakland, CA.</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+</script>
+
+</body>
+</html>

@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Atlas Construction — Oakland</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
+
   :root {
     --black: #0a0a0a;
     --off-black: #111111;
@@ -75,9 +67,10 @@
     font-weight: 500;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255,255,255,0.9);
     text-decoration: none;
     transition: color 0.2s;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
   }
 
   .nav-links a:hover { color: var(--gold-light); }
@@ -93,6 +86,7 @@
     padding: 10px 24px;
     text-decoration: none;
     transition: background 0.2s;
+    border: 2px solid var(--gold);
   }
 
   .nav-cta:hover { background: var(--gold-light) !important; }
@@ -154,9 +148,9 @@
     inset: 0;
     background: linear-gradient(
       to top,
-      rgba(0,0,0,0.85) 0%,
-      rgba(0,0,0,0.4) 50%,
-      rgba(0,0,0,0.15) 100%
+      rgba(0,0,0,0.9) 0%,
+      rgba(0,0,0,0.5) 50%,
+      rgba(0,0,0,0.2) 100%
     );
     z-index: 1;
   }
@@ -202,6 +196,7 @@
     color: var(--white);
     margin-bottom: 24px;
     letter-spacing: -0.01em;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.8);
   }
 
   .hero-headline em {
@@ -212,10 +207,11 @@
   .hero-sub {
     font-size: 15px;
     font-weight: 300;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,0.8);
     letter-spacing: 0.04em;
     margin-bottom: 40px;
     max-width: 400px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
   }
 
   .hero-actions {
@@ -237,6 +233,7 @@
     text-decoration: none;
     display: inline-block;
     transition: background 0.2s, transform 0.2s;
+    border: 2px solid var(--gold);
   }
 
   .btn-primary:hover {
@@ -250,8 +247,8 @@
     font-weight: 500;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.8);
-    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.9);
+    border: 2px solid rgba(255,255,255,0.6);
     padding: 15px 32px;
     text-decoration: none;
     display: inline-block;
@@ -952,422 +949,13 @@
     .nav { padding: 0 24px; }
   }
   @media (max-width: 480px) {
+    .nav-links a,
+    .hero-eyebrow,
+    .hero-sub,
+    .footer-links a { text-shadow: 0 2px 6px rgba(0,0,0,0.7); color: rgba(255,255,255,0.95) !important; }
+    .btn-primary, .btn-ghost, .nav-cta { border-width: 3px; }
+
     #hero { padding: 0 20px 50px; }
     .hero-headline { font-size: clamp(40px, 8vw, 64px); }
     .hero-sub { max-width: 100%; }
   }
-</style>
-</head>
-<body>
-
-<!-- ─── NAV ─── -->
-<nav id="main-nav">
-  <a href="#" class="nav-logo">Atlas<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#portfolio">Work</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#testimonials">Reviews</a></li>
-    <li><a href="#contact" class="nav-cta">Request an Estimate</a></li>
-  </ul>
-</nav>
-
-<!-- ─── HERO ─── -->
-<section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-
-  <div class="hero-content">
-    <div class="hero-eyebrow">Oakland, California · Est. 1994</div>
-    <h1 class="hero-headline">Built to<br><em>Last.</em></h1>
-    <p class="hero-sub">Residential and commercial construction — on time, on budget.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Request an Estimate</a>
-      <a href="#portfolio" class="btn-ghost">View Our Work</a>
-    </div>
-  </div>
-
-  <div class="hero-trust">
-    <div class="trust-item"><span class="dot"></span>Licensed & Insured</div>
-    <div class="trust-item"><span class="dot"></span>30+ Years in Oakland</div>
-    <div class="trust-item"><span class="dot"></span>Lic. #CA-XXXXXXX</div>
-    <div class="trust-item"><span class="dot"></span>Oakland · Berkeley · Alameda</div>
-  </div>
-</section>
-
-<!-- ─── SERVICES ─── -->
-<section id="services">
-  <div class="services-header reveal">
-    <div>
-      <div class="section-label">What We Build</div>
-      <h2 class="section-title">Our <em>Services</em></h2>
-    </div>
-    <p class="services-intro">From foundation to finish — full-service construction across residential and commercial sectors.</p>
-  </div>
-
-  <div class="services-grid">
-    <a href="#contact" class="service-card reveal">
-      <div class="service-number">01</div>
-      <div class="service-name">Residential Remodels</div>
-      <p class="service-desc">Kitchens, baths, full-home renovations. We handle permits, materials, and every phase of the build.</p>
-      <span class="service-arrow">Learn More →</span>
-    </a>
-    <a href="#contact" class="service-card reveal">
-      <div class="service-number">02</div>
-      <div class="service-name">Commercial Buildouts</div>
-      <p class="service-desc">Retail, office, and mixed-use spaces built to code and on schedule. Tenant improvements included.</p>
-      <span class="service-arrow">Learn More →</span>
-    </a>
-    <a href="#contact" class="service-card reveal">
-      <div class="service-number">03</div>
-      <div class="service-name">Additions & ADUs</div>
-      <p class="service-desc">Room additions, garage conversions, and accessory dwelling units — fully permitted and designed.</p>
-      <span class="service-arrow">Learn More →</span>
-    </a>
-    <a href="#contact" class="service-card reveal">
-      <div class="service-number">04</div>
-      <div class="service-name">Roofing</div>
-      <p class="service-desc">Replacement, repair, and new installation. All roofing types — residential and commercial.</p>
-      <span class="service-arrow">Learn More →</span>
-    </a>
-    <a href="#contact" class="service-card reveal">
-      <div class="service-number">05</div>
-      <div class="service-name">Concrete & Foundations</div>
-      <p class="service-desc">Driveways, slabs, retaining walls, and seismic retrofits for Bay Area soil conditions.</p>
-      <span class="service-arrow">Learn More →</span>
-    </a>
-    <a href="#contact" class="service-card reveal">
-      <div class="service-number">06</div>
-      <div class="service-name">ADA Upgrades</div>
-      <p class="service-desc">Accessibility compliance for commercial properties — ramps, restrooms, entries, and pathways.</p>
-      <span class="service-arrow">Learn More →</span>
-    </a>
-  </div>
-</section>
-
-<!-- ─── PORTFOLIO ─── -->
-<section id="portfolio">
-  <div class="portfolio-header reveal">
-    <div>
-      <div class="section-label">Selected Work</div>
-      <h2 class="section-title">Recent <em>Projects</em></h2>
-    </div>
-    <div class="portfolio-filters">
-      <button class="filter-btn active">All</button>
-      <button class="filter-btn">Residential</button>
-      <button class="filter-btn">Commercial</button>
-      <button class="filter-btn">Additions</button>
-    </div>
-  </div>
-
-  <div class="portfolio-grid">
-    <div class="portfolio-item reveal">
-      <div class="portfolio-img-placeholder">Project Photo</div>
-      <div class="portfolio-caption">
-        <div class="caption-type">Residential · Rockridge</div>
-        <div class="caption-name">Full Home Renovation</div>
-      </div>
-    </div>
-    <div class="portfolio-item reveal">
-      <div class="portfolio-img-placeholder">Project Photo</div>
-      <div class="portfolio-caption">
-        <div class="caption-type">Commercial · Downtown Oakland</div>
-        <div class="caption-name">Office Buildout, 4,200 SF</div>
-      </div>
-    </div>
-    <div class="portfolio-item reveal">
-      <div class="portfolio-img-placeholder">Project Photo</div>
-      <div class="portfolio-caption">
-        <div class="caption-type">Addition · Temescal</div>
-        <div class="caption-name">Second Story Addition</div>
-      </div>
-    </div>
-    <div class="portfolio-item reveal">
-      <div class="portfolio-img-placeholder">Project Photo</div>
-      <div class="portfolio-caption">
-        <div class="caption-type">Residential · Piedmont</div>
-        <div class="caption-name">Kitchen & Bath Remodel</div>
-      </div>
-    </div>
-    <div class="portfolio-item reveal">
-      <div class="portfolio-img-placeholder">Project Photo</div>
-      <div class="portfolio-caption">
-        <div class="caption-type">Concrete · Alameda</div>
-        <div class="caption-name">Driveway & Retaining Wall</div>
-      </div>
-    </div>
-    <div class="portfolio-item reveal">
-      <div class="portfolio-img-placeholder">Project Photo</div>
-      <div class="portfolio-caption">
-        <div class="caption-type">Commercial · Grand Ave</div>
-        <div class="caption-name">Restaurant Buildout</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── PROCESS ─── -->
-<section id="process">
-  <div class="process-visual">Replace with image</div>
-
-  <div>
-    <div class="section-label reveal">How We Work</div>
-    <h2 class="section-title reveal">Simple <em>Process.</em><br>No Surprises.</h2>
-
-    <div class="process-steps">
-      <div class="process-step reveal">
-        <div class="step-num">01</div>
-        <div class="step-content">
-          <h4>Request an Estimate</h4>
-          <p>We visit the site, assess scope, and provide a clear, itemized estimate — no hidden fees, no vague ranges.</p>
-        </div>
-      </div>
-      <div class="process-step reveal">
-        <div class="step-num">02</div>
-        <div class="step-content">
-          <h4>Plan & Permit</h4>
-          <p>We handle all permitting, scheduling, and material sourcing. You're kept updated at every milestone.</p>
-        </div>
-      </div>
-      <div class="process-step reveal">
-        <div class="step-num">03</div>
-        <div class="step-content">
-          <h4>Build</h4>
-          <p>Our crews execute the plan with precision. Daily site management and quality control throughout.</p>
-        </div>
-      </div>
-      <div class="process-step reveal">
-        <div class="step-num">04</div>
-        <div class="step-content">
-          <h4>Final Walkthrough</h4>
-          <p>We walk every project with you before close. Punch list resolved, warranty provided in writing.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── TESTIMONIALS ─── -->
-<section id="testimonials">
-  <div class="section-label reveal">Client Reviews</div>
-  <h2 class="section-title reveal">What Clients <em>Say</em></h2>
-
-  <div class="testimonials-grid">
-    <div class="testimonial reveal">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"Professional from estimate to final walkthrough. The team was on time, clean, and the work speaks for itself."</p>
-      <div class="testimonial-author">James T.</div>
-      <div class="testimonial-project">Full Kitchen Remodel · Rockridge</div>
-    </div>
-    <div class="testimonial reveal">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"They handled our commercial buildout in six weeks — on budget. I've referred them to three other business owners."</p>
-      <div class="testimonial-author">Maria S.</div>
-      <div class="testimonial-project">Commercial Buildout · Downtown Oakland</div>
-    </div>
-    <div class="testimonial reveal">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"Thirty years of experience shows. Every detail was managed. We couldn't be happier with the addition."</p>
-      <div class="testimonial-author">David & Priya K.</div>
-      <div class="testimonial-project">Second Story Addition · Temescal</div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── ABOUT ─── -->
-<section id="about">
-  <div class="about-text">
-    <div class="section-label reveal">Our Story</div>
-    <h2 class="section-title reveal">30 Years.<br><em>Oakland Built.</em></h2>
-    <p class="reveal">Founded in Oakland in 1994, Atlas Construction has built and renovated hundreds of homes and commercial spaces across the East Bay. We are a family-owned company with deep roots in the neighborhoods we serve.</p>
-    <p class="reveal">Every project — regardless of scale — receives the same commitment: honest pricing, skilled tradespeople, and work that holds up for decades.</p>
-
-    <div class="about-stats reveal">
-      <div>
-        <div class="stat-number">30<span>+</span></div>
-        <div class="stat-label">Years in Business</div>
-      </div>
-      <div>
-        <div class="stat-number">500<span>+</span></div>
-        <div class="stat-label">Projects Completed</div>
-      </div>
-      <div>
-        <div class="stat-number">98<span>%</span></div>
-        <div class="stat-label">Client Satisfaction</div>
-      </div>
-      <div>
-        <div class="stat-number">4.9<span>★</span></div>
-        <div class="stat-label">Google Rating</div>
-      </div>
-    </div>
-  </div>
-  <div class="about-visual">Replace with team photo</div>
-</section>
-
-<!-- ─── CONTACT ─── -->
-<section id="contact">
-  <div class="contact-left">
-    <div class="section-label reveal">Get Started</div>
-    <h2 class="section-title reveal">Request a<br><em>Estimate</em></h2>
-
-    <div class="contact-info reveal">
-      <div class="contact-item">
-        <span class="contact-item-label">Phone</span>
-        <span class="contact-item-value"><a href="tel:+15105550000">(510) 555-0000</a></span>
-      </div>
-      <div class="contact-item">
-        <span class="contact-item-label">Email</span>
-        <span class="contact-item-value"><a href="mailto:info@atlasconstruction.com">info@atlasconstruction.com</a></span>
-      </div>
-      <div class="contact-item">
-        <span class="contact-item-label">Service Area</span>
-        <span class="contact-item-value">Oakland · Berkeley · Alameda · Piedmont</span>
-      </div>
-      <div class="contact-item">
-        <span class="contact-item-label">Hours</span>
-        <span class="contact-item-value">Mon–Fri 7:00 AM – 6:00 PM</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="contact-right reveal">
-    <form class="contact-form" onsubmit="handleSubmit(event)">
-      <div class="form-row">
-        <div class="form-group">
-          <label>First Name</label>
-          <input type="text" placeholder="John" required>
-        </div>
-        <div class="form-group">
-          <label>Last Name</label>
-          <input type="text" placeholder="Smith">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Phone</label>
-          <input type="tel" placeholder="(510) 000-0000">
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" placeholder="john@email.com" required>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Project Type</label>
-        <select>
-          <option value="" disabled selected>Select a service</option>
-          <option>Residential Remodel</option>
-          <option>Commercial Buildout</option>
-          <option>Addition / ADU</option>
-          <option>Roofing</option>
-          <option>Concrete / Foundation</option>
-          <option>ADA Upgrade</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Neighborhood / Address</label>
-        <input type="text" placeholder="Rockridge, Oakland">
-      </div>
-      <div class="form-group">
-        <label>Project Description</label>
-        <textarea placeholder="Briefly describe your project..."></textarea>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Budget Range</label>
-          <select>
-            <option value="" disabled selected>Select range</option>
-            <option>Under $25,000</option>
-            <option>$25,000 – $75,000</option>
-            <option>$75,000 – $200,000</option>
-            <option>$200,000+</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Target Start Date</label>
-          <input type="text" placeholder="e.g. Spring 2025">
-        </div>
-      </div>
-      <button type="submit" class="form-submit">Submit Request</button>
-    </form>
-  </div>
-</section>
-
-<!-- ─── FOOTER ─── -->
-<footer>
-  <div class="footer-logo">Atlas<span>.</span> Construction</div>
-  <ul class="footer-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#portfolio">Work</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#testimonials">Reviews</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#">Privacy Policy</a></li>
-    <li><a href="#">Lic. #CA-XXXXXXX</a></li>
-  </ul>
-  <div class="footer-legal">© 2025 Atlas Construction. All rights reserved. Oakland, CA.</div>
-</footer>
-
-<script>
-  // Nav scroll behavior
-  const nav = document.getElementById('main-nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  });
-
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        // Stagger siblings
-        const siblings = [...e.target.parentElement.querySelectorAll('.reveal')];
-        const idx = siblings.indexOf(e.target);
-        setTimeout(() => e.target.classList.add('visible'), idx * 80);
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  reveals.forEach(el => observer.observe(el));
-
-  // Portfolio filter
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    });
-  });
-
-  // Form submit
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.form-submit');
-    btn.textContent = 'Request Sent ✓';
-    btn.style.background = '#4a7c59';
-    btn.style.color = '#fff';
-    setTimeout(() => {
-      btn.textContent = 'Submit Request';
-      btn.style.background = '';
-      btn.style.color = '';
-      e.target.reset();
-    }, 3000);
-  }
-</script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const nav = document.querySelector('nav');
-      const heroBg = document.querySelector('.hero-bg');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) nav.classList.add('scrolled');
-        else nav.classList.remove('scrolled');
-        const maxBlur = 8;
-        const blurVal = Math.min(maxBlur, window.scrollY / 100);
-        heroBg.style.filter = `blur(${blurVal}px)`;
-      });
-    });
-  </script>
-</body>
-</html>

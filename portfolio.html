@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Atlas Construction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self';">
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">Atlas<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="portfolio.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="testimonials.html">Reviews</a></li>
+    <li><a href="contact.html" class="nav-cta">Request an Estimate</a></li>
+  </ul>
+</nav>
+
+<section style="padding: 160px 80px 100px;">
+  <div class="section-label">Selected Work</div>
+  <h1 class="section-title">Recent <em>Projects</em></h1>
+  <p style="font-size: 16px; color: #555; max-width: 600px; margin-top: 24px; line-height: 1.7;">
+    A selection of our recent residential and commercial projects across Oakland, Berkeley, and the East Bay.
+  </p>
+</section>
+
+<section style="padding: 80px;">
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto;">
+    <div style="background: #eee; height: 300px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #999; border: 1px solid #ddd;">Project Image</div>
+    <div style="background: #eee; height: 300px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #999; border: 1px solid #ddd;">Project Image</div>
+    <div style="background: #eee; height: 300px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #999; border: 1px solid #ddd;">Project Image</div>
+    <div style="background: #eee; height: 300px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #999; border: 1px solid #ddd;">Project Image</div>
+    <div style="background: #eee; height: 300px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #999; border: 1px solid #ddd;">Project Image</div>
+    <div style="background: #eee; height: 300px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #999; border: 1px solid #ddd;">Project Image</div>
+  </div>
+</section>
+
+<section style="background: #f9f7f3; padding: 100px 80px; text-align: center;">
+  <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 42px; margin-bottom: 16px;">View More Projects</h2>
+  <p style="font-size: 16px; color: #666; margin-bottom: 32px;">Contact us to discuss your project.</p>
+  <a href="contact.html" class="btn-primary" style="display: inline-block; padding: 16px 40px; background: #b8933a; color: #000; text-decoration: none; font-weight: bold; border: 2px solid #b8933a;">Start Your Project</a>
+</section>
+
+<footer>
+  <div class="footer-logo">Atlas<span>.</span> Construction</div>
+  <ul class="footer-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="portfolio.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="testimonials.html">Reviews</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="legal/privacy.html">Privacy Policy</a></li>
+    <li><a href="legal/license.html">License</a></li>
+  </ul>
+  <div class="footer-legal">© 2025 Atlas Construction. All rights reserved. Oakland, CA.</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+</script>
+
+</body>
+</html>
