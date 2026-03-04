@@ -142,14 +142,10 @@
 
   /* The real image will replace this */
   .hero-bg::after {
-    content: 'REPLACE WITH PROJECT PHOTO';
+    content: '';
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    color: rgba(255,255,255,0.1);
     pointer-events: none;
   }
 
@@ -926,6 +922,40 @@
     .hero-headline { font-size: 44px; }
     .about-stats { grid-template-columns: 1fr 1fr; gap: 20px; }
   }
+
+  /* additional hero background and responsive tweaks */
+  .hero-bg {
+    background-image: url('images/hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: bgFade 1.5s ease-in-out forwards;
+    filter: blur(0);
+  }
+
+  @keyframes bgFade {
+    to { opacity: 1; }
+  }
+
+  /* make button borders more visible */
+  .btn-primary, .btn-ghost, .nav-cta {
+    border: 2px solid var(--gold);
+  }
+  .btn-ghost { border-color: rgba(255,255,255,0.6); }
+  .nav-cta { background: var(--gold); color: var(--black) !important; }
+
+  /* responsive adjustments */
+  @media (max-width: 768px) {
+    #hero { padding: 0 40px 60px; min-height: 60vh; }
+    .hero-content { max-width: 90%; text-align: center; }
+    .hero-eyebrow, .hero-actions { justify-content: center; }
+    .nav { padding: 0 24px; }
+  }
+  @media (max-width: 480px) {
+    #hero { padding: 0 20px 50px; }
+    .hero-headline { font-size: clamp(40px, 8vw, 64px); }
+    .hero-sub { max-width: 100%; }
+  }
 </style>
 </head>
 <body>
@@ -938,7 +968,7 @@
     <li><a href="#portfolio">Work</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#testimonials">Reviews</a></li>
-    <li><a href="#contact" class="nav-cta">Get Estimate</a></li>
+    <li><a href="#contact" class="nav-cta">Request an Estimate</a></li>
   </ul>
 </nav>
 
@@ -952,7 +982,7 @@
     <h1 class="hero-headline">Built to<br><em>Last.</em></h1>
     <p class="hero-sub">Residential and commercial construction — on time, on budget.</p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Request a Free Estimate</a>
+      <a href="#contact" class="btn-primary">Request an Estimate</a>
       <a href="#portfolio" class="btn-ghost">View Our Work</a>
     </div>
   </div>
@@ -1088,7 +1118,7 @@
       <div class="process-step reveal">
         <div class="step-num">01</div>
         <div class="step-content">
-          <h4>Free Estimate</h4>
+          <h4>Request an Estimate</h4>
           <p>We visit the site, assess scope, and provide a clear, itemized estimate — no hidden fees, no vague ranges.</p>
         </div>
       </div>
@@ -1178,7 +1208,7 @@
 <section id="contact">
   <div class="contact-left">
     <div class="section-label reveal">Get Started</div>
-    <h2 class="section-title reveal">Request a<br><em>Free Estimate</em></h2>
+    <h2 class="section-title reveal">Request a<br><em>Estimate</em></h2>
 
     <div class="contact-info reveal">
       <div class="contact-item">
@@ -1326,5 +1356,18 @@
   }
 </script>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const nav = document.querySelector('nav');
+      const heroBg = document.querySelector('.hero-bg');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+        const maxBlur = 8;
+        const blurVal = Math.min(maxBlur, window.scrollY / 100);
+        heroBg.style.filter = `blur(${blurVal}px)`;
+      });
+    });
+  </script>
 </body>
 </html>
