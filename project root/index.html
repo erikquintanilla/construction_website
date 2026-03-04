@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Construction — Oakland</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --off-black: #111111;
+    --charcoal: #1c1c1c;
+    --mid: #3a3a3a;
+    --muted: #888;
+    --light: #c8c4bc;
+    --cream: #f2efe9;
+    --white: #fafaf8;
+    --gold: #b8933a;
+    --gold-light: #d4aa55;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 72px;
+    transition: background 0.4s, border-color 0.4s;
+    border-bottom: 1px solid transparent;
+  }
+
+  nav.scrolled {
+    background: rgba(10,10,10,0.97);
+    border-color: rgba(184,147,58,0.25);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold-light); }
+
+  .nav-cta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black) !important;
+    background: var(--gold);
+    padding: 10px 24px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--gold-light) !important; }
+
+  /* ─── HERO ─────────────────────────────────────── */
+  #hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 0 80px 80px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 40%, #3a3632 100%);
+    z-index: 0;
+  }
+
+  /* Placeholder texture for the background image */
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 60px,
+        rgba(255,255,255,0.012) 60px,
+        rgba(255,255,255,0.012) 61px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 60px,
+        rgba(255,255,255,0.012) 60px,
+        rgba(255,255,255,0.012) 61px
+      );
+  }
+
+  /* The real image will replace this */
+  .hero-bg::after {
+    content: 'REPLACE WITH PROJECT PHOTO';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.1);
+    pointer-events: none;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.85) 0%,
+      rgba(0,0,0,0.4) 50%,
+      rgba(0,0,0,0.15) 100%
+    );
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    animation: heroIn 1.2s cubic-bezier(0.16,1,0.3,1) both;
+  }
+
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 7vw, 92px);
+    font-weight: 300;
+    line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.04em;
+    margin-bottom: 40px;
+    max-width: 400px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--gold);
+    color: var(--black);
+    padding: 16px 36px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 15px 32px;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+
+  /* Trust bar */
+  .hero-trust {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    z-index: 2;
+    background: rgba(184,147,58,0.12);
+    border-top: 1px solid rgba(184,147,58,0.3);
+    display: flex;
+    align-items: center;
+    padding: 0 80px;
+    height: 56px;
+    gap: 48px;
+  }
+
+  .trust-item {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .trust-item .dot {
+    width: 4px; height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  /* ─── SECTION SHARED ─────────────────────────── */
+  section { padding: 100px 80px; }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 58px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--off-black);
+    margin-bottom: 16px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  /* ─── SERVICES ───────────────────────────────── */
+  #services { background: var(--off-black); color: var(--white); }
+
+  #services .section-title { color: var(--white); }
+
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .services-intro {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    max-width: 340px;
+    line-height: 1.7;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.07);
+  }
+
+  .service-card {
+    background: var(--off-black);
+    padding: 44px 36px;
+    transition: background 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+  }
+
+  .service-card:hover { background: var(--charcoal); }
+
+  .service-number {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .service-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+  }
+
+  .service-arrow {
+    display: inline-block;
+    margin-top: 24px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .service-card:hover .service-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* ─── PORTFOLIO ──────────────────────────────── */
+  #portfolio { background: var(--cream); padding-bottom: 0; }
+
+  .portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .portfolio-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border: 1px solid var(--mid);
+    background: transparent;
+    color: var(--mid);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--black);
+    border-color: var(--black);
+    color: var(--white);
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+  }
+
+  .portfolio-item {
+    position: relative;
+    overflow: hidden;
+    background: var(--charcoal);
+    cursor: pointer;
+  }
+
+  .portfolio-item:nth-child(1) { grid-column: span 7; grid-row: span 2; aspect-ratio: unset; height: 560px; }
+  .portfolio-item:nth-child(2) { grid-column: span 5; height: 272px; }
+  .portfolio-item:nth-child(3) { grid-column: span 5; height: 272px; }
+  .portfolio-item:nth-child(4) { grid-column: span 4; height: 280px; margin-bottom: 100px; }
+  .portfolio-item:nth-child(5) { grid-column: span 4; height: 280px; margin-bottom: 100px; }
+  .portfolio-item:nth-child(6) { grid-column: span 4; height: 280px; margin-bottom: 100px; }
+
+  .portfolio-img-placeholder {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.08);
+    background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
+    text-transform: uppercase;
+  }
+
+  .portfolio-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 32px 28px 24px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.35s, opacity 0.35s;
+  }
+
+  .portfolio-item:hover .portfolio-caption {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .caption-type {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .caption-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--white);
+  }
+
+  /* ─── PROCESS ────────────────────────────────── */
+  #process {
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    padding: 100px 80px;
+  }
+
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 48px;
+  }
+
+  .process-step {
+    display: flex;
+    gap: 28px;
+    padding: 28px 0;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    position: relative;
+  }
+
+  .step-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    min-width: 28px;
+    padding-top: 2px;
+  }
+
+  .step-content h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--off-black);
+    margin-bottom: 6px;
+  }
+
+  .step-content p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .process-visual {
+    background: var(--off-black);
+    aspect-ratio: 4/5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.07);
+    text-transform: uppercase;
+  }
+
+  /* ─── TESTIMONIALS ───────────────────────────── */
+  #testimonials {
+    background: var(--black);
+    padding: 100px 80px;
+    text-align: center;
+  }
+
+  #testimonials .section-label { justify-content: center; }
+  #testimonials .section-label::before { display: none; }
+  #testimonials .section-title { color: var(--white); }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    margin-top: 60px;
+  }
+
+  .testimonial {
+    background: var(--black);
+    padding: 48px 36px;
+    text-align: left;
+  }
+
+  .stars {
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  .testimonial-author {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .testimonial-project {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    margin-top: 4px;
+  }
+
+  /* ─── ABOUT STRIP ────────────────────────────── */
+  #about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 560px;
+  }
+
+  .about-text {
+    background: var(--cream);
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .about-text p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--off-black);
+    line-height: 1;
+  }
+
+  .stat-number span { color: var(--gold); font-size: 28px; }
+
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .about-visual {
+    background: var(--charcoal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.06);
+    text-transform: uppercase;
+    min-height: 480px;
+  }
+
+  /* ─── CONTACT ────────────────────────────────── */
+  #contact {
+    background: var(--off-black);
+    padding: 100px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-left .section-title { color: var(--white); }
+
+  .contact-info {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .contact-item-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .contact-item-value {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .contact-item-value a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-item-value a:hover { color: var(--gold-light); }
+
+  /* Form */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-group label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white);
+    padding: 12px 16px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+  }
+
+  .form-group select option { background: var(--off-black); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 16px 40px;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-self: flex-start;
+    margin-top: 8px;
+  }
+
+  .form-submit:hover { background: var(--gold-light); }
+
+  /* ─── FOOTER ─────────────────────────────────── */
+  footer {
+    background: var(--black);
+    padding: 48px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-legal {
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── SCROLL REVEAL ──────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─────────────────────────────── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+
+    #hero { padding: 0 24px 72px; }
+    .hero-trust { padding: 0 24px; gap: 20px; overflow-x: auto; }
+
+    section { padding: 72px 24px; }
+
+    #process {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding: 72px 24px;
+    }
+
+    .process-visual { display: none; }
+
+    .services-grid { grid-template-columns: 1fr 1fr; }
+
+    .testimonials-grid { grid-template-columns: 1fr; }
+
+    .portfolio-item:nth-child(1) { grid-column: span 12; height: 360px; }
+    .portfolio-item:nth-child(2),
+    .portfolio-item:nth-child(3) { grid-column: span 6; height: 220px; }
+    .portfolio-item:nth-child(4),
+    .portfolio-item:nth-child(5),
+    .portfolio-item:nth-child(6) { grid-column: span 12; height: 220px; margin-bottom: 0; }
+    .portfolio-grid { gap: 8px; }
+
+    #about { grid-template-columns: 1fr; }
+    .about-text { padding: 56px 24px; }
+    .about-visual { display: none; }
+
+    #contact { grid-template-columns: 1fr; gap: 48px; padding: 72px 24px; }
+    .form-row { grid-template-columns: 1fr; }
+
+    footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .hero-headline { font-size: 44px; }
+    .about-stats { grid-template-columns: 1fr 1fr; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">Atlas<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Get Estimate</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Oakland, California · Est. 1994</div>
+    <h1 class="hero-headline">Built to<br><em>Last.</em></h1>
+    <p class="hero-sub">Residential and commercial construction — on time, on budget.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Request a Free Estimate</a>
+      <a href="#portfolio" class="btn-ghost">View Our Work</a>
+    </div>
+  </div>
+
+  <div class="hero-trust">
+    <div class="trust-item"><span class="dot"></span>Licensed & Insured</div>
+    <div class="trust-item"><span class="dot"></span>30+ Years in Oakland</div>
+    <div class="trust-item"><span class="dot"></span>Lic. #CA-XXXXXXX</div>
+    <div class="trust-item"><span class="dot"></span>Oakland · Berkeley · Alameda</div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section id="services">
+  <div class="services-header reveal">
+    <div>
+      <div class="section-label">What We Build</div>
+      <h2 class="section-title">Our <em>Services</em></h2>
+    </div>
+    <p class="services-intro">From foundation to finish — full-service construction across residential and commercial sectors.</p>
+  </div>
+
+  <div class="services-grid">
+    <a href="#contact" class="service-card reveal">
+      <div class="service-number">01</div>
+      <div class="service-name">Residential Remodels</div>
+      <p class="service-desc">Kitchens, baths, full-home renovations. We handle permits, materials, and every phase of the build.</p>
+      <span class="service-arrow">Learn More →</span>
+    </a>
+    <a href="#contact" class="service-card reveal">
+      <div class="service-number">02</div>
+      <div class="service-name">Commercial Buildouts</div>
+      <p class="service-desc">Retail, office, and mixed-use spaces built to code and on schedule. Tenant improvements included.</p>
+      <span class="service-arrow">Learn More →</span>
+    </a>
+    <a href="#contact" class="service-card reveal">
+      <div class="service-number">03</div>
+      <div class="service-name">Additions & ADUs</div>
+      <p class="service-desc">Room additions, garage conversions, and accessory dwelling units — fully permitted and designed.</p>
+      <span class="service-arrow">Learn More →</span>
+    </a>
+    <a href="#contact" class="service-card reveal">
+      <div class="service-number">04</div>
+      <div class="service-name">Roofing</div>
+      <p class="service-desc">Replacement, repair, and new installation. All roofing types — residential and commercial.</p>
+      <span class="service-arrow">Learn More →</span>
+    </a>
+    <a href="#contact" class="service-card reveal">
+      <div class="service-number">05</div>
+      <div class="service-name">Concrete & Foundations</div>
+      <p class="service-desc">Driveways, slabs, retaining walls, and seismic retrofits for Bay Area soil conditions.</p>
+      <span class="service-arrow">Learn More →</span>
+    </a>
+    <a href="#contact" class="service-card reveal">
+      <div class="service-number">06</div>
+      <div class="service-name">ADA Upgrades</div>
+      <p class="service-desc">Accessibility compliance for commercial properties — ramps, restrooms, entries, and pathways.</p>
+      <span class="service-arrow">Learn More →</span>
+    </a>
+  </div>
+</section>
+
+<!-- ─── PORTFOLIO ─── -->
+<section id="portfolio">
+  <div class="portfolio-header reveal">
+    <div>
+      <div class="section-label">Selected Work</div>
+      <h2 class="section-title">Recent <em>Projects</em></h2>
+    </div>
+    <div class="portfolio-filters">
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">Residential</button>
+      <button class="filter-btn">Commercial</button>
+      <button class="filter-btn">Additions</button>
+    </div>
+  </div>
+
+  <div class="portfolio-grid">
+    <div class="portfolio-item reveal">
+      <div class="portfolio-img-placeholder">Project Photo</div>
+      <div class="portfolio-caption">
+        <div class="caption-type">Residential · Rockridge</div>
+        <div class="caption-name">Full Home Renovation</div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal">
+      <div class="portfolio-img-placeholder">Project Photo</div>
+      <div class="portfolio-caption">
+        <div class="caption-type">Commercial · Downtown Oakland</div>
+        <div class="caption-name">Office Buildout, 4,200 SF</div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal">
+      <div class="portfolio-img-placeholder">Project Photo</div>
+      <div class="portfolio-caption">
+        <div class="caption-type">Addition · Temescal</div>
+        <div class="caption-name">Second Story Addition</div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal">
+      <div class="portfolio-img-placeholder">Project Photo</div>
+      <div class="portfolio-caption">
+        <div class="caption-type">Residential · Piedmont</div>
+        <div class="caption-name">Kitchen & Bath Remodel</div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal">
+      <div class="portfolio-img-placeholder">Project Photo</div>
+      <div class="portfolio-caption">
+        <div class="caption-type">Concrete · Alameda</div>
+        <div class="caption-name">Driveway & Retaining Wall</div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal">
+      <div class="portfolio-img-placeholder">Project Photo</div>
+      <div class="portfolio-caption">
+        <div class="caption-type">Commercial · Grand Ave</div>
+        <div class="caption-name">Restaurant Buildout</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROCESS ─── -->
+<section id="process">
+  <div class="process-visual">Replace with image</div>
+
+  <div>
+    <div class="section-label reveal">How We Work</div>
+    <h2 class="section-title reveal">Simple <em>Process.</em><br>No Surprises.</h2>
+
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h4>Free Estimate</h4>
+          <p>We visit the site, assess scope, and provide a clear, itemized estimate — no hidden fees, no vague ranges.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h4>Plan & Permit</h4>
+          <p>We handle all permitting, scheduling, and material sourcing. You're kept updated at every milestone.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h4>Build</h4>
+          <p>Our crews execute the plan with precision. Daily site management and quality control throughout.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h4>Final Walkthrough</h4>
+          <p>We walk every project with you before close. Punch list resolved, warranty provided in writing.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section id="testimonials">
+  <div class="section-label reveal">Client Reviews</div>
+  <h2 class="section-title reveal">What Clients <em>Say</em></h2>
+
+  <div class="testimonials-grid">
+    <div class="testimonial reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Professional from estimate to final walkthrough. The team was on time, clean, and the work speaks for itself."</p>
+      <div class="testimonial-author">James T.</div>
+      <div class="testimonial-project">Full Kitchen Remodel · Rockridge</div>
+    </div>
+    <div class="testimonial reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"They handled our commercial buildout in six weeks — on budget. I've referred them to three other business owners."</p>
+      <div class="testimonial-author">Maria S.</div>
+      <div class="testimonial-project">Commercial Buildout · Downtown Oakland</div>
+    </div>
+    <div class="testimonial reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Thirty years of experience shows. Every detail was managed. We couldn't be happier with the addition."</p>
+      <div class="testimonial-author">David & Priya K.</div>
+      <div class="testimonial-project">Second Story Addition · Temescal</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+  <div class="about-text">
+    <div class="section-label reveal">Our Story</div>
+    <h2 class="section-title reveal">30 Years.<br><em>Oakland Built.</em></h2>
+    <p class="reveal">Founded in Oakland in 1994, Atlas Construction has built and renovated hundreds of homes and commercial spaces across the East Bay. We are a family-owned company with deep roots in the neighborhoods we serve.</p>
+    <p class="reveal">Every project — regardless of scale — receives the same commitment: honest pricing, skilled tradespeople, and work that holds up for decades.</p>
+
+    <div class="about-stats reveal">
+      <div>
+        <div class="stat-number">30<span>+</span></div>
+        <div class="stat-label">Years in Business</div>
+      </div>
+      <div>
+        <div class="stat-number">500<span>+</span></div>
+        <div class="stat-label">Projects Completed</div>
+      </div>
+      <div>
+        <div class="stat-number">98<span>%</span></div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+      <div>
+        <div class="stat-number">4.9<span>★</span></div>
+        <div class="stat-label">Google Rating</div>
+      </div>
+    </div>
+  </div>
+  <div class="about-visual">Replace with team photo</div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <div class="contact-left">
+    <div class="section-label reveal">Get Started</div>
+    <h2 class="section-title reveal">Request a<br><em>Free Estimate</em></h2>
+
+    <div class="contact-info reveal">
+      <div class="contact-item">
+        <span class="contact-item-label">Phone</span>
+        <span class="contact-item-value"><a href="tel:+15105550000">(510) 555-0000</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-label">Email</span>
+        <span class="contact-item-value"><a href="mailto:info@atlasconstruction.com">info@atlasconstruction.com</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-label">Service Area</span>
+        <span class="contact-item-value">Oakland · Berkeley · Alameda · Piedmont</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-label">Hours</span>
+        <span class="contact-item-value">Mon–Fri 7:00 AM – 6:00 PM</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-right reveal">
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="John" required>
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Smith">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" placeholder="(510) 000-0000">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="john@email.com" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Project Type</label>
+        <select>
+          <option value="" disabled selected>Select a service</option>
+          <option>Residential Remodel</option>
+          <option>Commercial Buildout</option>
+          <option>Addition / ADU</option>
+          <option>Roofing</option>
+          <option>Concrete / Foundation</option>
+          <option>ADA Upgrade</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Neighborhood / Address</label>
+        <input type="text" placeholder="Rockridge, Oakland">
+      </div>
+      <div class="form-group">
+        <label>Project Description</label>
+        <textarea placeholder="Briefly describe your project..."></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Budget Range</label>
+          <select>
+            <option value="" disabled selected>Select range</option>
+            <option>Under $25,000</option>
+            <option>$25,000 – $75,000</option>
+            <option>$75,000 – $200,000</option>
+            <option>$200,000+</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Target Start Date</label>
+          <input type="text" placeholder="e.g. Spring 2025">
+        </div>
+      </div>
+      <button type="submit" class="form-submit">Submit Request</button>
+    </form>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-logo">Atlas<span>.</span> Construction</div>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#">Privacy Policy</a></li>
+    <li><a href="#">Lic. #CA-XXXXXXX</a></li>
+  </ul>
+  <div class="footer-legal">© 2025 Atlas Construction. All rights reserved. Oakland, CA.</div>
+</footer>
+
+<script>
+  // Nav scroll behavior
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        // Stagger siblings
+        const siblings = [...e.target.parentElement.querySelectorAll('.reveal')];
+        const idx = siblings.indexOf(e.target);
+        setTimeout(() => e.target.classList.add('visible'), idx * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Portfolio filter
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = 'Request Sent ✓';
+    btn.style.background = '#4a7c59';
+    btn.style.color = '#fff';
+    setTimeout(() => {
+      btn.textContent = 'Submit Request';
+      btn.style.background = '';
+      btn.style.color = '';
+      e.target.reset();
+    }, 3000);
+  }
+</script>
+
+</body>
+</html>
